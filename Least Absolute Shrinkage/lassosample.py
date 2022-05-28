@@ -18,7 +18,7 @@ Y = datasetsample.target
 scaler = StandardScaler()
 X_std = scaler.fit_transform(X)
 
-regr = Lasso(alpha=1.5)
+regr = Lasso(alpha=0.5)
 
 mdl = regr.fit(X_std,Y)
 
