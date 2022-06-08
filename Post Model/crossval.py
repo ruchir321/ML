@@ -22,5 +22,14 @@ for name, met in [
     r2_train = r2_score(Y, p)
 
     #Now we use 10 fold cross-validation to estimate generalization error
-    kf = KFold(len(X), n_folds=5)
-    p = np.zeros
+    kf = KFold(len(X))
+    p = np.zeros_like(Y)
+    for train, test in kf:
+        met.fit(x[train], Y[train])
+        p[test] = met.predict(x[test])
+    
+    r2_cv = r2_score(Y, p)
+    print('Method: {}'.format(name))
+    print('Training: {}'.format(r2_train))
+    print('10-fold CV: {}'.format(r2_cv))
+# %%
